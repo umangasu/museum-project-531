@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-export class Artist extends Component {
+export class QRCodeScanner extends Component {
 
   render() {
     return (
-      <div>Artist</div>
+      <div>QRCodeScanner</div>
     )
   }
 }
 
-export default Artist
+export default QRCodeScanner
