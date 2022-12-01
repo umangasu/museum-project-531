@@ -35,6 +35,42 @@ export default function Artwork() {
           </CardContent>
         </CardActionArea>
       </Card>
+      <Card sx={{ maxWidth: 345 }}>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            height="140"
+            image="/static/images/cards/contemplative-reptile.jpg"
+            alt="green iguana"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              Artwork 2
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              First artwork descriptions
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+      <Card sx={{ maxWidth: 345 }}>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            height="140"
+            image="/static/images/cards/contemplative-reptile.jpg"
+            alt="green iguana"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              Artwork 3
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              First artwork descriptions
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
     </div>
   )
   

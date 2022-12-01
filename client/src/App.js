@@ -9,6 +9,7 @@ import Navbar from './Components/Navbar';
 import QRCodeScanner from './Components/QRCodeScanner';
 import ArtistDetail from './Components/ArtistDetail';
 import ArtworkDetail from './Components/ArtworkDetail';
+import ExhibitionDetail from './Components/ExhibitionDetail';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/qrcodescanner/" exact element={<QRCodeScanner/>}/>
             <Route path="/artists/:artistId" exact element={<ArtistDetail/>}/>
             <Route path="/artworks/:artworkId" exact element={<ArtworkDetail/>}/>
+            <Route path="/exhibitions/:exhibitionId" exact element={<ExhibitionDetail/>}/>
             {/* <Route path="/users" exact component={UserList}/>
             <Route path="/users/:userId" exact component={UserDetail}/>
             <Route path="/users/:userId/album/:albumId" exact component={AlbumDetail}/> */}
