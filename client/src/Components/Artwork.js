@@ -22,7 +22,7 @@ export default function Artwork() {
           <CardMedia
             component="img"
             height="140"
-            image="/static/images/cards/contemplative-reptile.jpg"
+            image="https://i.pinimg.com/736x/48/8e/ca/488ecae926cecf65c0439c03a0906376.jpg"
             alt="green iguana"
           />
           <CardContent>
@@ -40,7 +40,7 @@ export default function Artwork() {
           <CardMedia
             component="img"
             height="140"
-            image="/static/images/cards/contemplative-reptile.jpg"
+            image="https://i.pinimg.com/736x/48/8e/ca/488ecae926cecf65c0439c03a0906376.jpg"
             alt="green iguana"
           />
           <CardContent>
@@ -58,7 +58,7 @@ export default function Artwork() {
           <CardMedia
             component="img"
             height="140"
-            image="/static/images/cards/contemplative-reptile.jpg"
+            image="https://i.pinimg.com/736x/48/8e/ca/488ecae926cecf65c0439c03a0906376.jpg"
             alt="green iguana"
           />
           <CardContent>

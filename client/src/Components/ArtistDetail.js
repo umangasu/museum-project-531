@@ -7,11 +7,13 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import Artwork from './Artwork';
 
 const { Meta } = Card;
 
 export default function ArtistDetail() {
     return (
+        <>
         <div style={{width: '100%'}}>
             <div 
                 style={{position: 'relative'}}
@@ -72,5 +74,8 @@ export default function ArtistDetail() {
                 </Card>
             </div>
         </div>
+        <Artwork/>
+        </>
+
     )
 }
