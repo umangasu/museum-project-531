@@ -8,12 +8,25 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import Artwork from './Artwork';
+import axios from "axios";
 
 const { Meta } = Card;
 
-export default function ArtistDetail() {
+const baseURL = 'http://localhost:8080/smartMuseum/artist/';
+
+export default function ArtistDetail(props) {
+    const { artistId } = useParams()
+    const [artistData, setArtistData] = React.useState(null);
+
+    React.useEffect(() => {
+        axios.get(baseURL.concat(artistId)).then((response) => {
+            console.log('before setting artwork data to json', response.data);
+            setArtistData(response.data);
+            console.log('after setting artwork data to json', artistData);
+        })
+    }, artistData)
+
     return (
-        <>
         <div style={{width: '100%'}}>
             <div 
                 style={{position: 'relative'}}
@@ -27,9 +40,6 @@ export default function ArtistDetail() {
                             height: '200px',
                             width: '100%',
                             position: 'relative',
-                            // borderBottom: '5px solid black'
-                            // marginTop: '40px',
-                            // zIndex: 3
                         }}
                     >
 
@@ -43,15 +53,10 @@ export default function ArtistDetail() {
                         src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKAGia3COeBXxUXJ1K8G82_IlcYQqjkzYKZB53vl_v_7rroFHjb4A9diTKCf-cs9JTNro&usqp=CAU'
                         style={{
                             borderRadius: '50%',
-                            // borderColor: 'black',
-                            // borderWidth: '5px',
-                            // borderStyle: 'solid',
                             width: '90px',
                             height: '90px',
-                            // marginLeft: '46%',
                             marginTop: '-10px',
                             position: 'absolute',
-                            // zIndex: 1
                         }}
                     >
 
@@ -74,8 +79,6 @@ export default function ArtistDetail() {
                 </Card>
             </div>
         </div>
-        <Artwork/>
-        </>
 
     )
 }

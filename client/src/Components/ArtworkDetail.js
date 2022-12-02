@@ -8,24 +8,23 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const { Meta } = Card;
 
-const baseURL = 'http://localhost:8080/smartMuseum/artwork/1'
+const baseURL = 'http://localhost:8080/smartMuseum/artwork/';
 
 export default function ArtworkDetail(props) {
-    // const { artworkId } = useParams()
-    console.log('bruh outside');
-    const artworkId = 9;
+    const { artworkId } = useParams()
     const [artworkData, setArtworkData] = React.useState(null);
 
     React.useEffect(() => {
-        axios.get(baseURL).then((response) => {
+        axios.get(baseURL.concat(artworkId)).then((response) => {
             console.log('before setting artwork data to json', response.data);
             setArtworkData(response.data);
             console.log('after setting artwork data to json', artworkData);
         })
-    }, [artworkData])
+    }, artworkData)
 
 
     return (
@@ -35,7 +34,6 @@ export default function ArtworkDetail(props) {
             >
                 <div style={{
                     maxWidth: 500, 
-                    // maxHeight: 500, 
                     marginTop: '20px'
                 }}>
                     <img 
@@ -50,31 +48,66 @@ export default function ArtworkDetail(props) {
                 </div>
             </div>
             <div style={{display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'center'}}>
-                <Card sx={{ maxWidth: 500, marginTop: '20px'}}>
-                    {/* <CardActionArea> */}
+                <Card sx={{ maxWidth: 500, marginTop: '20px', width: 500}}>
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
+                        <Typography gutterBottom variant="h6" component="div">
                         {artworkData && artworkData.title}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
                         {artworkData && artworkData.description}
                         </Typography>
                     </CardContent>
-                    {/* </CardActionArea> */}
                 </Card>
             </div>
             <div style={{display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'center'}}>
-                <Card sx={{ maxWidth: 500, marginTop: '20px'}}>
-                    {/* <CardActionArea> */}
+                <Card sx={{ maxWidth: 500, marginTop: '20px', width: 500}}>
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                        {artworkData && artworkData.title}
+                        <Typography gutterBottom variant="h6" component="div">
+                        Dimensions
                         </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                        {artworkData && artworkData.description}
-                        </Typography>
+                        <div style={{display: 'flex'}}>
+                            <Typography variant="body2" color="text.primary">
+                            Height &nbsp;
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                            {artworkData && artworkData.height} &nbsp; | &nbsp;
+                            </Typography>
+                            <Typography variant="body2" color="text.primary">
+                            Width &nbsp;
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                            {artworkData && artworkData.width.split("^^")[0]} &nbsp; | &nbsp;
+                            </Typography>
+                            <Typography variant="body2" color="text.primary">
+                            Depth &nbsp;
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                            {artworkData && artworkData.depth}
+                            </Typography>
+                        </div>
                     </CardContent>
-                    {/* </CardActionArea> */}
+                </Card>
+            </div>
+            <div style={{display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'center'}}>
+                <Card sx={{ maxWidth: 500, marginTop: '20px', width: 500}}>
+                    <CardContent>
+                        <Typography gutterBottom variant="h6" component="div">
+                        Artist
+                        </Typography>
+                        <div style={{display: 'flex'}}>
+                            
+                            <Link 
+                                to={`/artists/${artworkData && artworkData['artistID'].split("^^")[0]}`}
+                                style={{
+                                    textDecoration: 'None',
+                                }}
+                            >
+                                <Typography variant="body2" color="text.secondary">
+                                {artworkData && artworkData.artistName}
+                                </Typography>
+                            </Link>
+                        </div>
+                    </CardContent>
                 </Card>
             </div>
         </div>
