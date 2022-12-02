@@ -10,9 +10,8 @@ function QRCodeScanner() {
         if(data==='No result') {
             return;
         }
-        let link = data.split("/");
-        let newlink = link[link.length - 2] + '/' + link[link.length - 1];
-        history(`/${newlink}`);
+        let tempLink = data.substring(data.lastIndexOf('0') + 1);
+        history(`${tempLink}`);
     }, [data])
 
   return (
@@ -28,7 +27,6 @@ function QRCodeScanner() {
           }
         }}
         />
-      <p> {data}</p>
     </div>
   )
 }
