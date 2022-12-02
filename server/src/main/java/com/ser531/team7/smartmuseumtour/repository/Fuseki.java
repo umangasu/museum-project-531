@@ -63,22 +63,41 @@ public class Fuseki {
     }
 
     public String getArtistDetailsByArtistId(String artistId) {
+        return "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+                "PREFIX ar: <http://www.semanticweb.org/artist#>\n" +
+                "SELECT ?Artist_id ?Artist_Name ?Description ?BirthDate ?Nationality  WHERE {\n" +
+                " ?sub  ar:hasArtistDetails ?ArtistDetails .\n" +
+                "   filter (contains(str(?sub), \"Artist_2484\"))\n" +
+                " ?ArtistDetails ar:hasName ?Artist_Name .\n" +
+                " ?ArtistDetails ar:hasArtistId ?Artist_id . \n" +
+                " ?ArtistDetails ar:hasDescription ?Description . \n" +
+                " ?ArtistDetails ar:hasBirthDate ?BirthDate .  \n" +
+                " ?sub ar:hasArtwork ?artwork .  \n" +
+                " ?artwork ar:hasArtworkID ?artworkId .\n" +
+                " ?sub ar:hasCountry ?country .\n" +
+                " ?country ar:hasCountryName ?Nationality\n" +
+                " ?ArtistDetails ar:hasImage ?image\n" +
+                "}";
+    }
+
+    public String getAllArtists() {
         return "PREFIX sem: <http://semanticweb.cs.vu.nl/2009/11/sem/>\n" +
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
                 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
                 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
                 "PREFIX ar: <http://www.semanticweb.org/artist#>\n" +
-                "SELECT ?artistId ?artistName ?description ?birthDate ?nationality  WHERE {\n" +
-                " ?sub  ar:hasartistDetails ?artistDetails .\n" +
-                "   filter (contains(str(?sub), \"Artist_2484\"))\n" +
-                " ?artistDetails ar:hasName ?artistName .\n" +
-                " ?artistDetails ar:hasArtistId ?artistId . \n" +
-                " ?artistDetails ar:hasdescription ?description . \n" +
-                " ?artistDetails ar:hasbirthDate ?birthDate .  \n" +
-                " ?sub ar:hasArtwork ?artwork .  \n" +
+                "SELECT ?artistId ?artistName ?description ?birthDate ?nationality ?image WHERE {\n" +
+                " ?sub  ar:hasArtistDetails ?ArtistDetails .\n" +
+                "   filter (contains(str(?sub), \"Artist_\"))\n" +
+                " ?ArtistDetails ar:hasName ?artistName .\n" +
+                " ?ArtistDetails ar:hasArtistId ?artistId . \n" +
+                " ?ArtistDetails ar:hasDescription ?description . \n" +
+                " ?ArtistDetails ar:hasBirthDate ?birthDate .  \n" +
+                " ?sub ar:hasArtwork ?artwork .          \n" +
                 " ?artwork ar:hasArtworkID ?artworkId .\n" +
                 " ?sub ar:hasCountry ?country .\n" +
-                " ?country ar:hasCountryName ?nationality\n" +
+                " ?country ar:hasCountryName ?nationality .\n" +
+                " ?ArtistDetails ar:hasImage ?image\n" +
                 "}";
     }
 }
