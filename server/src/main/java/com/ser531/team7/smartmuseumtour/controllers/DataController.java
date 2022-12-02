@@ -19,8 +19,14 @@ public class DataController {
 
     @CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
     @GetMapping("/smartMuseum/artworks")
-    public List<Artwork> getArtwork() {
+    public List<Artwork> getArtworks() {
         return awsService.getAllArtworks();
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
+    @GetMapping("/smartMuseum/artwork/{artworkId}")
+    public Artwork getArtworkByID(@PathVariable String artworkId) {
+        return awsService.getArtworkByID(artworkId);
     }
 
     @CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
@@ -30,9 +36,10 @@ public class DataController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
-    @GetMapping("/smartMuseum/artwork/{artworkId}")
-    public Artwork getArtworkByID(@PathVariable String artworkId) {
-        return awsService.getArtworkByID(artworkId);
+    @GetMapping("/smartMuseum/artists")
+    public List<Artist> getArtists() {
+        return awsService.getAllArtists();
     }
+
 
 }

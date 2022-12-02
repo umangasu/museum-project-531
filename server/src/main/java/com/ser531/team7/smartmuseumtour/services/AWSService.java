@@ -71,15 +71,36 @@ public class AWSService {
             ResultSet resultSet =  queryExecution.execSelect();
             while (resultSet.hasNext()) {
                 QuerySolution solution = resultSet.nextSolution();
-                System.out.println("Solution title : " + solution.getLiteral("Artist_Name").toString());
-                artist.setArtistID(solution.getLiteral("Artist_id").toString());
-                artist.setArtistName(solution.getLiteral("Artist_Name").toString());
-                artist.setDescription(solution.getLiteral("Description").toString());
-                artist.setBirthdate(solution.getLiteral("BirthDate").toString());
-                artist.setNationality(solution.getLiteral("Nationality").toString());
+                System.out.println("Solution title : " + solution.getLiteral("artistName").toString());
+                artist.setArtistID(solution.getLiteral("artistId").toString());
+                artist.setArtistName(solution.getLiteral("artistName").toString());
+                artist.setDescription(solution.getLiteral("description").toString());
+                artist.setBirthdate(solution.getLiteral("birthDate").toString());
+                artist.setNationality(solution.getLiteral("nationality").toString());
+                artist.setImageUrl(solution.getLiteral("image").toString());
             }
         }
         return artist;
+    }
+
+    public List<Artist> getAllArtists() {
+        List<Artist> artists = new ArrayList<>();
+        try (QueryExecution queryExecution = QueryExecutionFactory.sparqlService(ARTIST_DS_URI, fuseki.getAllArtists())) {
+            ResultSet resultSet =  queryExecution.execSelect();
+            while (resultSet.hasNext()) {
+                Artist artist = new Artist();
+                QuerySolution solution = resultSet.nextSolution();
+                System.out.println("Solution title : " + solution.getLiteral("artistName").toString());
+                artist.setArtistID(solution.getLiteral("artistId").toString());
+                artist.setArtistName(solution.getLiteral("artistName").toString());
+                artist.setDescription(solution.getLiteral("description").toString());
+                artist.setBirthdate(solution.getLiteral("birthDate").toString());
+                artist.setNationality(solution.getLiteral("nationality").toString());
+                artist.setImageUrl(solution.getLiteral("image").toString());
+                artists.add(artist);
+            }
+        }
+        return artists;
     }
 
 }

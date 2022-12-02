@@ -63,19 +63,22 @@ public class Fuseki {
     }
 
     public String getArtistDetailsByArtistId(String artistId) {
-        return "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+        return "PREFIX sem: <http://semanticweb.cs.vu.nl/2009/11/sem/>\n" +
+                "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+                "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+                "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
                 "PREFIX ar: <http://www.semanticweb.org/artist#>\n" +
-                "SELECT ?Artist_id ?Artist_Name ?Description ?BirthDate ?Nationality  WHERE {\n" +
+                "SELECT ?artistId ?artistName ?description ?birthDate ?nationality ?image WHERE {\n" +
                 " ?sub  ar:hasArtistDetails ?ArtistDetails .\n" +
                 "   filter (contains(str(?sub), \"Artist_2484\"))\n" +
-                " ?ArtistDetails ar:hasName ?Artist_Name .\n" +
-                " ?ArtistDetails ar:hasArtistId ?Artist_id . \n" +
-                " ?ArtistDetails ar:hasDescription ?Description . \n" +
-                " ?ArtistDetails ar:hasBirthDate ?BirthDate .  \n" +
+                " ?ArtistDetails ar:hasName ?artistName .\n" +
+                " ?ArtistDetails ar:hasArtistId ?artistId . \n" +
+                " ?ArtistDetails ar:hasDescription ?description . \n" +
+                " ?ArtistDetails ar:hasBirthDate ?birthDate .  \n" +
                 " ?sub ar:hasArtwork ?artwork .  \n" +
                 " ?artwork ar:hasArtworkID ?artworkId .\n" +
                 " ?sub ar:hasCountry ?country .\n" +
-                " ?country ar:hasCountryName ?Nationality\n" +
+                " ?country ar:hasCountryName ?nationality .\n" +
                 " ?ArtistDetails ar:hasImage ?image\n" +
                 "}";
     }
