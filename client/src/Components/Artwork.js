@@ -42,8 +42,13 @@ export default function Artwork() {
                 alt="green iguana"
               />
               <CardContent>
-                <Link to={`/artworks/${artwork && artwork['artworkID']}`}>
-                  <Typography gutterBottom variant="h5" component="div">
+                <Link 
+                  to={`/artworks/${artwork && artwork['artworkID']}`}
+                  style={{
+                    textDecoration: 'None'
+                  }}
+                >
+                  <Typography gutterBottom variant="h6" component="div">
                     {artwork && artwork['title']}
                   </Typography>
                 </Link>
