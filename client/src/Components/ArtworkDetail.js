@@ -16,6 +16,7 @@ const baseURL = 'http://localhost:8080/smartMuseum/artwork/';
 
 export default function ArtworkDetail(props) {
     const { artworkId } = useParams()
+    console.log(artworkId);
     const [artworkData, setArtworkData] = React.useState(null);
 
     React.useEffect(() => {

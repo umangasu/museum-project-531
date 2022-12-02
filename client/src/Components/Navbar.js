@@ -18,7 +18,7 @@ import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 
-const pages = ['Artists', 'Artworks', 'Exhibitions'];
+const pages = ['Artists', 'Artworks'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const darkTheme = createTheme({

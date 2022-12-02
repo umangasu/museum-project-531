@@ -18,7 +18,7 @@ export default function Artwork() {
   React.useEffect(() => {
     async function fetchData() {
         const resp = await axios.get(baseURL);
-        console.log(resp.data);
+        // console.log(resp.data);
         setArtworkData(resp.data);
     }
     fetchData();
@@ -33,7 +33,7 @@ export default function Artwork() {
       flexWrap: 'wrap'
     }}>
       {artworkData && artworkData.map((artwork, index) => (
-          <Card sx={{ maxWidth: 345 }}>
+          <Card sx={{ maxWidth: 345, marginTop: '20px' }}>
             <CardActionArea>
               <CardMedia
                 component="img"
