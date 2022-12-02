@@ -7,30 +7,60 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import axios from "axios";
 
 const { Meta } = Card;
 
-export default function ArtworkDetail() {
+const baseURL = 'http://localhost:8080/smartMuseum/artwork/1'
+
+export default function ArtworkDetail(props) {
+    // const { artworkId } = useParams()
+    console.log('bruh outside');
+    const artworkId = 9;
+    const [artworkData, setArtworkData] = React.useState(null);
+
+    React.useEffect(() => {
+        axios.get(baseURL).then((response) => {
+            console.log('before setting artwork data to json', response.data);
+            setArtworkData(response.data);
+            console.log('after setting artwork data to json', artworkData);
+        })
+    }, [artworkData])
+
+
     return (
         <div style={{width: '100%'}}>
+            <div
+                style={{display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'center'}}
+            >
+                <div style={{
+                    maxWidth: 500, 
+                    // maxHeight: 500, 
+                    marginTop: '20px'
+                }}>
+                    <img 
+                        src={artworkData && artworkData['imageUrl']}
+                        style={{
+                            maxWidth: '100%',
+                            maxHeight: '100%',
+                        }}
+                    >
+
+                    </img>
+                </div>
+            </div>
             <div style={{display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'center'}}>
                 <Card sx={{ maxWidth: 500, marginTop: '20px'}}>
-                    <div>
-                        <img 
-                            src='https://sep.yimg.com/ty/cdn/madisonartshop/most-famous-paintings-2.jpg?t=1660737943&'
-                            // style={{
-                            //     filter: 'blur(3px)',
-                            //     height: '200px',
-                            //     width: '100%',
-                            //     position: 'relative',
-                            //     // borderBottom: '5px solid black'
-                            //     // marginTop: '40px',
-                            //     // zIndex: 3
-                            // }}
-                        >
-
-                        </img>
-                    </div>
+                    {/* <CardActionArea> */}
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                        {artworkData && artworkData.title}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                        {artworkData && artworkData.description}
+                        </Typography>
+                    </CardContent>
+                    {/* </CardActionArea> */}
                 </Card>
             </div>
             <div style={{display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'center'}}>
@@ -38,11 +68,10 @@ export default function ArtworkDetail() {
                     {/* <CardActionArea> */}
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
-                        Van Gogh
+                        {artworkData && artworkData.title}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
+                        {artworkData && artworkData.description}
                         </Typography>
                     </CardContent>
                     {/* </CardActionArea> */}

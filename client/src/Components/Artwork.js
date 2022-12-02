@@ -6,8 +6,22 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import axios from "axios";
+import { Link } from "react-router-dom";
+
+const baseURL = "http://localhost:8080/smartMuseum/artworks"
 
 export default function Artwork() {
+
+  const [artworkData, setArtworkData] = React.useState(null);
+
+  React.useEffect(() => {
+      axios.get(baseURL).then((response) => {
+          console.log('before setting artwork data to json', response.data);
+          setArtworkData(response.data);
+          console.log('after setting artwork data to json', artworkData);
+      })
+  }, [artworkData])
 
   return (
     <div style={{
@@ -17,60 +31,28 @@ export default function Artwork() {
       alignItems: 'center',
       flexWrap: 'wrap'
     }}>
-      <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="140"
-            image="https://i.pinimg.com/736x/48/8e/ca/488ecae926cecf65c0439c03a0906376.jpg"
-            alt="green iguana"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Artwork 1
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              First artwork descriptions
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-      <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="140"
-            image="https://i.pinimg.com/736x/48/8e/ca/488ecae926cecf65c0439c03a0906376.jpg"
-            alt="green iguana"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Artwork 2
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              First artwork descriptions
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-      <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="140"
-            image="https://i.pinimg.com/736x/48/8e/ca/488ecae926cecf65c0439c03a0906376.jpg"
-            alt="green iguana"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Artwork 3
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              First artwork descriptions
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
+      {artworkData && artworkData.map((artwork, index) => (
+          <Card sx={{ maxWidth: 345 }}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="140"
+                image={artwork && artwork['imageUrl']}
+                alt="green iguana"
+              />
+              <CardContent>
+                <Link to={`/artworks/${artwork && artwork['artworkID']}`}>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {artwork && artwork['title']}
+                  </Typography>
+                </Link>
+                {/* <Typography gutterBottom variant="h5" component="div">
+                    {artwork && artwork['title']}
+                  </Typography> */}
+              </CardContent>
+            </CardActionArea>
+          </Card>
+      ))}
     </div>
   )
   
