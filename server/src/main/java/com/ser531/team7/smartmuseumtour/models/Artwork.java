@@ -13,16 +13,14 @@ public class Artwork {
     private String depth;
     private String imageUrl;
     private String artistID;
-    private String artist;
     private String description;
-    private String type;
-    private String exhibitedIn;
     private String exhibitionId;
+    private String artistName;
 
     public Artwork(String artworkID, String title, String height,
                    String width, String depth, String imageUrl,
-                   String constituentID, String artist, String description,
-                   String type, String exhibitedIn, String exhibitionId) {
+                   String artistID, String description,
+                   String exhibitionId, String artistName) {
         super();
         this.artworkID = artworkID;
         this.title = title;
@@ -30,12 +28,10 @@ public class Artwork {
         this.width = width;
         this.depth = depth;
         this.imageUrl = imageUrl;
-        this.artistID = constituentID;
-        this.artist = artist;
+        this.artistID = artistID;
         this.description = description;
-        this.type = type;
-        this.exhibitedIn = exhibitedIn;
         this.exhibitionId = exhibitionId;
+        this.artistName = artistName;
     }
 
     public String getArtworkID() {
@@ -86,22 +82,6 @@ public class Artwork {
         this.imageUrl = imageUrl;
     }
 
-    public String getConstituentID() {
-        return artistID;
-    }
-
-    public void setConstituentID(String constituentID) {
-        this.artistID = constituentID;
-    }
-
-    public String getArtist() {
-        return artist;
-    }
-
-    public void setArtist(String artist) {
-        this.artist = artist;
-    }
-
     public String getArtistID() {
         return this.artistID;
     }
@@ -118,28 +98,20 @@ public class Artwork {
         this.description = description;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getExhibitedIn() {
-        return exhibitedIn;
-    }
-
-    public void setExhibitedIn(String exhibitedIn) {
-        this.exhibitedIn = exhibitedIn;
-    }
-
     public String getExhibitionId() {
         return exhibitionId;
     }
 
     public void setExhibitionId(String exhibitionId) {
         this.exhibitionId = exhibitionId;
+    }
+
+    public String getArtistName() {
+        return artistName;
+    }
+
+    public void setArtistName(String artistName) {
+        this.artistName = artistName;
     }
 
 
