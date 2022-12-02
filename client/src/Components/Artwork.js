@@ -16,12 +16,13 @@ export default function Artwork() {
   const [artworkData, setArtworkData] = React.useState(null);
 
   React.useEffect(() => {
-      axios.get(baseURL).then((response) => {
-          console.log('before setting artwork data to json', response.data);
-          setArtworkData(response.data);
-          console.log('after setting artwork data to json', artworkData);
-      })
-  }, [artworkData])
+    async function fetchData() {
+        const resp = await axios.get(baseURL);
+        console.log(resp.data);
+        setArtworkData(resp.data);
+    }
+    fetchData();
+  },[])
 
   return (
     <div style={{
