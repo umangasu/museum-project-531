@@ -10,6 +10,7 @@
  ## Instructions
  - *for front end*
  - Download latest version of node
+ - checkout to production branch
  - clone the repository
  - navigate to museum-project-531\client
  - npm install
