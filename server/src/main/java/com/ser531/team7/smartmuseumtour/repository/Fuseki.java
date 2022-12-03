@@ -13,7 +13,8 @@ public class Fuseki {
                 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
                 "PREFIX aw: <http://www.semanticweb.org/artwork#>\n" +
                 "PREFIX semweb: <http://www.semanticweb.org/artwork/Artwork_1966.27.4>\n" +
-                "SELECT ?title ?bio ?image ?artworkID ?artistId ?artistName ?exhibitionId ?len ?wid ?ht  WHERE {\n" +
+                "\n" +
+                "SELECT ?title ?bio ?image ?artworkID ?artistId ?artistName ?exhibitionId ?len ?wid ?ht ?dt  WHERE {\n" +
                 " ?sub aw:hasArtworkDetails ?artist  .\n" +
                 " filter (contains(str(?sub), \"" + id + "\")) \n" +
                 " ?artist aw:hasTitle ?title .\n" +
@@ -27,9 +28,10 @@ public class Fuseki {
                 " ?artist aw:hasSize ?size .\n" +
                 " ?sub aw:exhibitedIn ?exhibit .\n" +
                 " ?exhibit aw:hasExhibitionId ?exhibitionId . \n" +
-                " ?size aw:hasWidth ?wid .\n" +
-                " ?size aw:hasLength ?len .\n" +
-                " ?size aw:hasHeight ?ht\n" +
+                "  OPTIONAL {?size aw:hasWidth ?wid .} .\n" +
+                "  OPTIONAL {?size aw:hasLength ?len .} .\n" +
+                "  OPTIONAL {?size aw:hasHeight ?ht .}\n" +
+                "  OPTIONAL { ?size aw:hasDiameter ?dt . }\n" +
                 "}";
     }
 
