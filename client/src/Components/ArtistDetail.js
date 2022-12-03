@@ -50,7 +50,7 @@ export default function ArtistDetail(props) {
                 </div> */}
                 <div style={{display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'center'}}>
                     <img 
-                        src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKAGia3COeBXxUXJ1K8G82_IlcYQqjkzYKZB53vl_v_7rroFHjb4A9diTKCf-cs9JTNro&usqp=CAU'
+                        src={artistData && artistData['imageUrl']}
                         style={{
                             borderRadius: '50%',
                             width: '90px',
@@ -68,14 +68,36 @@ export default function ArtistDetail(props) {
                     {/* <CardActionArea> */}
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
-                        Van Gogh
+                        {artistData && artistData['artistName']}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
+                        {artistData && artistData['description']}
                         </Typography>
                     </CardContent>
                     {/* </CardActionArea> */}
+                </Card>
+            </div>
+            <div style={{display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'center'}}>
+                <Card sx={{ maxWidth: 500, marginTop: '20px', width: 500}}>
+                    <CardContent>
+                        <Typography gutterBottom variant="h6" component="div">
+                        Info
+                        </Typography>
+                        <div style={{display: 'flex'}}>
+                            <Typography variant="body2" color="text.primary">
+                            Birth Year &nbsp;
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                            {artistData && artistData.birthdate.split("^^")[0]} &nbsp; | &nbsp;
+                            </Typography>
+                            <Typography variant="body2" color="text.primary">
+                            Nationality &nbsp;
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                            {artistData && artistData.nationality} 
+                            </Typography>
+                        </div>
+                    </CardContent>
                 </Card>
             </div>
         </div>
