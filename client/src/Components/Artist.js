@@ -36,7 +36,7 @@ export default function Artist() {
             textDecoration: 'None'
           }}
         >
-          <Card sx={{ maxWidth: 345, marginTop: '20px' }}>
+          <Card sx={{ maxWidth: 345, marginTop: '30px', marginRight: '50px' }}>
             <CardActionArea>
               <CardMedia
                 component="img"

@@ -5,6 +5,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Link } from "react-router-dom";
+import QrCodeScannerRoundedIcon from '@mui/icons-material/QrCodeScannerRounded';
+
 
 export class Homepage extends Component {
 
@@ -57,10 +59,23 @@ export class Homepage extends Component {
                 fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
+                marginRight: '50px'
               }}
             >
               Artworks
             </Button>
+          </Link>
+          <Link to={`/qrcodescanner/`} style={{textDecoration: 'none'}}>
+              <Button 
+                variant="contained"
+                style={{
+                  fontFamily: 'monospace',
+                  fontWeight: 700,
+                  letterSpacing: '.3rem',
+                }}
+              >
+                <QrCodeScannerRoundedIcon sx={{ color: 'white' }}/>
+              </Button>
           </Link>
         </div>
       </div>
