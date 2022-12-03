@@ -2,6 +2,7 @@ package com.ser531.team7.smartmuseumtour.controllers;
 
 import com.ser531.team7.smartmuseumtour.models.Artist;
 import com.ser531.team7.smartmuseumtour.models.Artwork;
+import com.ser531.team7.smartmuseumtour.models.Exhibition;
 import com.ser531.team7.smartmuseumtour.services.AWSService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -41,5 +42,9 @@ public class DataController {
         return awsService.getAllArtists();
     }
 
-
+    @CrossOrigin(origins = "http://localhost:3000/", allowedHeaders = "*")
+    @GetMapping("/smartMuseum/exhibition/{exhibitionId}")
+    public Exhibition getExhibitionByID(@PathVariable String exhibitionId) {
+        return awsService.getExhibitionByID(exhibitionId);
+    }
 }

@@ -6,16 +6,16 @@ import org.springframework.stereotype.Service;
 public class Fuseki {
 
     public String getArtworkDetailsByArtworkId(String artworkID) {
+        String id = "Artwork_" + artworkID;
         return "PREFIX sem: <http://semanticweb.cs.vu.nl/2009/11/sem/>\n" +
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
                 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
                 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
                 "PREFIX aw: <http://www.semanticweb.org/artwork#>\n" +
                 "PREFIX semweb: <http://www.semanticweb.org/artwork/Artwork_1966.27.4>\n" +
-                "\n" +
                 "SELECT ?title ?bio ?image ?artworkID ?artistId ?artistName ?exhibitionId ?len ?wid ?ht  WHERE {\n" +
                 " ?sub aw:hasArtworkDetails ?artist  .\n" +
-                " filter (contains(str(?sub), \"Artwork_1966.27.4\")) \n" +
+                " filter (contains(str(?sub), \"" + id + "\")) \n" +
                 " ?artist aw:hasTitle ?title .\n" +
                 " ?artist aw:hasArtworkBio ?bio .\n" +
                 " ?artist aw:hasImageUrl ?image . \n" +
@@ -63,6 +63,7 @@ public class Fuseki {
     }
 
     public String getArtistDetailsByArtistId(String artistId) {
+        String id = "Artist_" + artistId;
         return "PREFIX sem: <http://semanticweb.cs.vu.nl/2009/11/sem/>\n" +
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
                 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
@@ -70,7 +71,7 @@ public class Fuseki {
                 "PREFIX ar: <http://www.semanticweb.org/artist#>\n" +
                 "SELECT ?artistId ?artistName ?description ?birthDate ?nationality ?image WHERE {\n" +
                 " ?sub  ar:hasArtistDetails ?ArtistDetails .\n" +
-                "   filter (contains(str(?sub), \"Artist_2484\"))\n" +
+                "   filter (contains(str(?sub), \"" + id + "\"))\n" +
                 " ?ArtistDetails ar:hasName ?artistName .\n" +
                 " ?ArtistDetails ar:hasArtistId ?artistId . \n" +
                 " ?ArtistDetails ar:hasDescription ?description . \n" +
@@ -103,4 +104,28 @@ public class Fuseki {
                 " ?ArtistDetails ar:hasImage ?image\n" +
                 "}";
     }
+
+    public String getExhibitionByExhibitionId(String exhibitionID) {
+        String id = "Exhibition_" + exhibitionID;
+        return "PREFIX ex: <http://example.org/>\n" +
+                "PREFIX sem: <http://semanticweb.cs.vu.nl/2009/11/sem/>\n" +
+                "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+                "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+                "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+                "PREFIX exh: <http://www.semanticweb.org/exhibition#>\n" +
+                "SELECT ?exhibitionID ?exhibitionName ?exhibitionBio ?founders ?foundedDate ?artworkId ?countryName WHERE {\n" +
+                " ?sub exh:hasExhibitionDetails ?exhibition  .\n" +
+                " filter (contains(str(?sub), \"" + id + "\"))\n" +
+                " ?exhibition exh:hasExhibitionId ?exhibitionID .\n" +
+                " ?exhibition exh:hasExhibitionName ?exhibitionName .\n" +
+                " ?exhibition exh:hasExhibitionBio ?exhibitionBio . \n" +
+                "  ?exhibition exh:hasFounders ?founders .\n" +
+                "  ?exhibition exh:hasFoundedDate ?foundedDate .\n" +
+                "  ?exhibition exh:exhibitionHasArtwork ?artworkinExhibition .\n" +
+                "  ?artworkinExhibition exh:hasArtworkId ?artworkId .\n" +
+                "  ?exhibition exh:hasCountry ?country.\n" +
+                "  ?country exh:hasCountryName ?countryName \n" +
+                "}";
+    }
+
 }
