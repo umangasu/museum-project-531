@@ -27,16 +27,16 @@ public class AWSService {
             ResultSet resultSet =  queryExecution.execSelect();
             while (resultSet.hasNext()) {
                 QuerySolution solution = resultSet.nextSolution();
-                artwork.setArtworkID(solution.getLiteral("artworkID").toString());
+                artwork.setArtworkID(solution.getLiteral("artworkID").toString().split(Pattern.quote("^^"))[0]);
                 artwork.setArtistID(solution.getLiteral("artistId").toString().split(Pattern.quote("^^"))[0]);
-                artwork.setTitle(solution.getLiteral("title").toString());
-                artwork.setDescription(solution.getLiteral("bio").toString());
+                artwork.setTitle(solution.getLiteral("title").toString().split(Pattern.quote("^^"))[0]);
+                artwork.setDescription(solution.getLiteral("bio").toString().split(Pattern.quote("^^"))[0]);
                 artwork.setImageUrl(solution.getLiteral("image").toString());
                 artwork.setHeight((solution.getLiteral("ht") == null ? "" : solution.getLiteral("ht").toString().split(Pattern.quote("^^"))[0]));
                 artwork.setWidth((solution.getLiteral("wid") == null ? "" : solution.getLiteral("wid").toString().split(Pattern.quote("^^"))[0]));
                 artwork.setDepth((solution.getLiteral("len") == null ? "" : solution.getLiteral("len").toString().split(Pattern.quote("^^"))[0]));
                 artwork.setExhibitionId(solution.getLiteral("exhibitionId").toString().split(Pattern.quote("^^"))[0]);
-                artwork.setArtistName(solution.getLiteral("artistName").toString());
+                artwork.setArtistName(solution.getLiteral("artistName").toString().split(Pattern.quote("^^"))[0]);
             }
         }
         return artwork;
@@ -49,16 +49,16 @@ public class AWSService {
             while (resultSet.hasNext()) {
                 QuerySolution solution = resultSet.nextSolution();
                 Artwork artwork = new Artwork();
-                artwork.setArtworkID(solution.getLiteral("artworkID").toString());
+                artwork.setArtworkID(solution.getLiteral("artworkID").toString().split(Pattern.quote("^^"))[0]);
                 artwork.setArtistID(solution.getLiteral("artistId").toString().split(Pattern.quote("^^"))[0]);
-                artwork.setTitle(solution.getLiteral("title").toString());
-                artwork.setDescription(solution.getLiteral("bio").toString());
+                artwork.setTitle(solution.getLiteral("title").toString().split(Pattern.quote("^^"))[0]);
+                artwork.setDescription(solution.getLiteral("bio").toString().split(Pattern.quote("^^"))[0]);
                 artwork.setImageUrl(solution.getLiteral("image").toString());
                 artwork.setHeight((solution.getLiteral("ht") == null ? "" : solution.getLiteral("ht").toString().split(Pattern.quote("^^"))[0]));
                 artwork.setWidth((solution.getLiteral("wid") == null ? "" : solution.getLiteral("wid").toString().split(Pattern.quote("^^"))[0]));
                 artwork.setDepth((solution.getLiteral("len") == null ? "" : solution.getLiteral("len").toString().split(Pattern.quote("^^"))[0]));
                 artwork.setExhibitionId(solution.getLiteral("exhibitionId").toString().split(Pattern.quote("^^"))[0]);
-                artwork.setArtistName(solution.getLiteral("artistName").toString());
+                artwork.setArtistName(solution.getLiteral("artistName").toString().split(Pattern.quote("^^"))[0]);
                 artworks.add(artwork);
             }
         }
@@ -72,10 +72,10 @@ public class AWSService {
             while (resultSet.hasNext()) {
                 QuerySolution solution = resultSet.nextSolution();
                 artist.setArtistID(solution.getLiteral("artistId").toString().split(Pattern.quote("^^"))[0]);
-                artist.setArtistName(solution.getLiteral("artistName").toString());
-                artist.setDescription(solution.getLiteral("description").toString());
+                artist.setArtistName(solution.getLiteral("artistName").toString().split(Pattern.quote("^^"))[0]);
+                artist.setDescription(solution.getLiteral("description").toString().split(Pattern.quote("^^"))[0]);
                 artist.setBirthdate(solution.getLiteral("birthDate").toString().split(Pattern.quote("^^"))[0]);
-                artist.setNationality(solution.getLiteral("nationality").toString());
+                artist.setNationality(solution.getLiteral("nationality").toString().split(Pattern.quote("^^"))[0]);
                 artist.setImageUrl(solution.getLiteral("image").toString());
             }
         }
@@ -90,10 +90,10 @@ public class AWSService {
                 Artist artist = new Artist();
                 QuerySolution solution = resultSet.nextSolution();
                 artist.setArtistID(solution.getLiteral("artistId").toString().split(Pattern.quote("^^"))[0]);
-                artist.setArtistName(solution.getLiteral("artistName").toString());
-                artist.setDescription(solution.getLiteral("description").toString());
+                artist.setArtistName(solution.getLiteral("artistName").toString().split(Pattern.quote("^^"))[0]);
+                artist.setDescription(solution.getLiteral("description").toString().split(Pattern.quote("^^"))[0]);
                 artist.setBirthdate(solution.getLiteral("birthDate").toString().split(Pattern.quote("^^"))[0]);
-                artist.setNationality(solution.getLiteral("nationality").toString());
+                artist.setNationality(solution.getLiteral("nationality").toString().split(Pattern.quote("^^"))[0]);
                 artist.setImageUrl(solution.getLiteral("image").toString());
                 artists.add(artist);
             }
@@ -108,12 +108,12 @@ public class AWSService {
             while (resultSet.hasNext()) {
                 QuerySolution solution = resultSet.nextSolution();
                 exhibition.setExhibitionID(solution.getLiteral("exhibitionID").toString().split(Pattern.quote("^^"))[0]);
-                exhibition.setExhibitionName(solution.getLiteral("exhibitionName").toString());
-                exhibition.setExhibitionBio(solution.getLiteral("exhibitionBio").toString());
-                exhibition.setFounders(solution.getLiteral("founders").toString());
+                exhibition.setExhibitionName(solution.getLiteral("exhibitionName").toString().split(Pattern.quote("^^"))[0]);
+                exhibition.setExhibitionBio(solution.getLiteral("exhibitionBio").toString().split(Pattern.quote("^^"))[0]);
+                exhibition.setFounders(solution.getLiteral("founders").toString().split(Pattern.quote("^^"))[0]);
                 exhibition.setFoundedDate(solution.getLiteral("foundedDate").toString().split(Pattern.quote("^^"))[0]);
                 exhibition.setArtworkId(solution.getLiteral("artworkId").toString().split(Pattern.quote("^^"))[0]);
-                exhibition.setCountryName(solution.getLiteral("countryName").toString());
+                exhibition.setCountryName(solution.getLiteral("countryName").toString().split(Pattern.quote("^^"))[0]);
             }
         }
         return exhibition;
