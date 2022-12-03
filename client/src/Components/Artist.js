@@ -30,31 +30,33 @@ export default function Artist() {
       flexWrap: 'wrap'
     }}>
       {artistData && artistData.map((artist, index) => (
+        <Link 
+          to={`/artists/${artist && artist['artistID']}`}
+          style={{
+            textDecoration: 'None'
+          }}
+        >
           <Card sx={{ maxWidth: 345, marginTop: '20px' }}>
             <CardActionArea>
               <CardMedia
                 component="img"
-                height="140"
+                height="300"
                 image={artist && artist['imageUrl']}
                 alt="green iguana"
               />
               <CardContent>
-                <Link 
-                  to={`/artists/${artist && artist['artistID']}`}
-                  style={{
-                    textDecoration: 'None'
-                  }}
-                >
+                
                   <Typography gutterBottom variant="h6" component="div">
                     {artist && artist['artistName']}
                   </Typography>
-                </Link>
+                
                 {/* <Typography gutterBottom variant="h5" component="div">
                     {artwork && artwork['title']}
                   </Typography> */}
               </CardContent>
             </CardActionArea>
           </Card>
+        </Link>
       ))}
     </div>
   );

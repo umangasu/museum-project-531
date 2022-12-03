@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Button } from '@mui/material';
 
 const { Meta } = Card;
 
@@ -46,6 +47,21 @@ export default function ArtworkDetail(props) {
                     >
 
                     </img>
+                    <Link to={`/exhibitions/${artworkData && artworkData['exhibitionId']}`}> 
+                        <Button 
+                        variant="contained"
+                        style={{
+                            fontFamily: 'monospace',
+                            fontWeight: 700,
+                            letterSpacing: '.3rem',
+                            marginTop: '-60px',
+                            marginRight: '10px',
+                            float: 'right'
+                        }}
+                        >
+                        Exhibition {artworkData && artworkData['exhibitionId']}
+                        </Button>
+                    </Link>
                 </div>
             </div>
             <div style={{display: 'flex', width: '100%', alignItems: 'center', justifyContent: 'center'}}>
